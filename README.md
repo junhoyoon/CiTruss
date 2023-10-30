@@ -17,7 +17,7 @@ CiTruss was introduced in the following preprint:
 CiTruss was compiled and tested on the following environments:
 
 - Linux: CentOS 7.4 with g++ (GCC) 4.8.5
-- MacOS:
+- MacOS: MacOS 12.6.8 with clang 17.0.3
 
 CiTruss also uses [Metis 5.1.0](http://glaros.dtc.umn.edu/gkhome/metis/metis/download), which is already included in [./metis-5.1.0](/metis-5.1.0).
 
@@ -118,7 +118,7 @@ options [-flag <option> (default option)]:
 
 A demo run for sum model:
 ```bash
-./citruss_sum 200 40 100 ./demo/Ysum.txt ./demo/X1.txt ./demo/X2.txt 0.1 0.1 -o ./demo/
+./citruss_sum 200 40 100 ../demo/Ysum.txt ../demo/X1.txt ../demo/X2.txt 0.1 0.1 -o ../demo/
 ```
 
 The demo run should finish in a few seconds. The sum model generates two outputs, `V.txt` for gene network and `F.txt` for eQTLs. Expected outputs from the demo run can be found in [/demo](./demo).
@@ -162,7 +162,7 @@ options [-flag <option> (default option)]:
 
 A demo run for difference model:
 ```bash
-./citruss_diff 200 40 100 ./demo/Y1.txt ./demo/Y2.txt ./demo/X1.txt ./demo/X2.txt ./demo/gene_info.txt ./demo/snp_info.txt 0.1 -o ./demo/ -r 1 --init-Psi ./demo/eqtl_init.txt
+./citruss_diff 200 40 100 ../demo/Y1.txt ../demo/Y2.txt ../demo/X1.txt ../demo/X2.txt ../demo/gene_info.txt ../demo/snp_info.txt 0.1 -o ../demo/ -r 1 --init-Psi ../demo/eqtl_init.txt
 ```
 
 The demo run should finish in a few seconds. The difference model generates two outputs, `Psi.txt` for *cis*-acting eQTLs and `Gamma.txt` for inverse variance of allele-specific expression. Expected outputs from the demo run can be found in [/demo](./demo).
