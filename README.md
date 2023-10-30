@@ -19,7 +19,7 @@ CiTruss was compiled and tested on the following environments:
 - Linux: CentOS 7.4 with g++ (GCC) 4.8.5
 - MacOS: MacOS 12.6.8 with clang 17.0.3
 
-CiTruss also uses [Metis 5.1.0](http://glaros.dtc.umn.edu/gkhome/metis/metis/download), which is already included in [./metis-5.1.0](/metis-5.1.0).
+CiTruss also uses [Metis 5.1.0](http://glaros.dtc.umn.edu/gkhome/metis/metis/download), which is already included in [/metis-5.1.0](/metis-5.1.0).
 
 ## Installation
 
@@ -28,14 +28,14 @@ CiTruss also uses [Metis 5.1.0](http://glaros.dtc.umn.edu/gkhome/metis/metis/dow
 Inside ./CiTruss folder, run the following command to install CiTruss. It will take less than a minute to compile CiTruss.
 
 ```bash
-./make
+make
 ```
 
 This will generate `citruss_sum` for [CiTruss sum model](#sum-model) and `citruss_diff` for [CiTruss difference model](#difference-model).
 
 ### Mac OSX
 
-Depending on the MacOSX version and default compiler, the location of some of the library #include statements in Mega-sCGGM, a software required to run CiTruss. Just always using the llvm/clang compiler installed via homebrew puts the libraries in the same place. For this, you will first need to install [Homebrew](https://brew.sh/), and then use it to install llvm:
+First, install [Homebrew](https://brew.sh/). Then, use it to install llvm:
 
 ```bash
 brew install llvm
@@ -44,10 +44,11 @@ brew install llvm
 You will also need to make sure you have the latest versions of XCode command-line tools installed. Then, go to ./CiTruss folder and run the following command to install CiTruss. It will take less than a minute to compile CiTruss.
 
 ```bash
-./make
+make & cp ../metis-5.1.0/lib/libmetis.dylib .
 ```
 
 This will generate `citruss_sum` for [CiTruss sum model](#sum-model) and `citruss_diff` for [CiTruss difference model](#difference-model).
+
 
 ## Data Formatting
 
