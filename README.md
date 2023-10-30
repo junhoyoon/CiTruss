@@ -65,7 +65,7 @@ Genotype data should be a text file that includes a space-separated matrix of ph
 
 ### eQTL information
 
-eQTL information should be a text file that includes indices of SNPs along with the indicies of their target genes in each line. The indicies of SNPs and genes should match the row indicies of SNPs and genes in allele-specific expression and phased genotype files. A score metric for each pair of eQTL and target gene should also be included. Lastly, the first line should contain the number of SNPs, genes, and eQTLs, each separated with a space (an example in [/demo/eqtl_init.txt](./demo/eqtl_init.txt)).
+eQTL information should be a text file that includes indices of SNPs along with the indicies of their target genes in each line. The indicies of SNPs and genes should match the row indicies of SNPs and genes in allele-specific expression and phased genotype files. All indicies start from 1. A score metric for each pair of eQTL and target gene should also be included. Lastly, the first line should contain the number of SNPs, genes, and eQTLs, each separated with a space (an example in [/demo/eqtl_init.txt](./demo/eqtl_init.txt)).
 
 For score metrics, an output from CiTruss sum model can be directly used. If eQTLs were obtained with other softwares that outputs p-values, for instance, a negative log of p-value can be used.
 
@@ -145,7 +145,7 @@ required arguments:
 
 options [-flag <option> (default option)]:
     -o <output_prefix> (./): prefix for output files
-    --init-Gamma <Gamma0_filename> (none): file path for initial Gamma [variance for allele-specific expression of each gene]
+    --init-Gamma <Gamma0_filename> (none): file path for initial Gamma [inverse variance for allele-specific expression of each gene]
     --init-Psi <Psi0_filename> (none): file path for initial Psi [cis-acting eQTLs]
     -v <verbose> (1): show optimization information or not (1 or 0)
     -i <max_iters> (10): max number of outer iterations
@@ -165,9 +165,20 @@ A demo run for difference model:
 ./citruss_diff 200 40 100 ./demo/Y1.txt ./demo/Y2.txt ./demo/X1.txt ./demo/X2.txt ./demo/gene_info.txt ./demo/snp_info.txt 0.1 -o ./demo/ -r 1 --init-Psi ./demo/eqtl_init.txt
 ```
 
-The demo run should finish in a few seconds. The difference model generates two outputs, `Psi.txt` for *cis*-acting eQTLs and `Gamma.txt` for variance of allele-specific expression. Expected outputs from the demo run can be found in [/demo](./demo).
+The demo run should finish in a few seconds. The difference model generates two outputs, `Psi.txt` for *cis*-acting eQTLs and `Gamma.txt` for inverse variance of allele-specific expression. Expected outputs from the demo run can be found in [/demo](./demo).
 
 
 ## Understanding the CiTruss Outputs
 
+The outputs from CiTruss have a space-separated *sparse matrix* format, which means each row has `row_index column_index matrix_value`. For example, a row `2 10 0.245` means that a matrix has `0.245` value at the `2`nd row and `10`th column. All indicies start from 1.
+
+### Sum model
+
+- `V.txt`: a matrix of shape `(num_genes,num_genes)` for gene network, parameterized as a [precision matrix](https://en.wikipedia.org/wiki/Partial_correlation#Using_matrix_inversion) for multivariate Gaussian distribution.
+- `F.txt`: a matrix of shape `(num_SNPs,num_genes)` for eQTLs. Each matrix value encodes the direction (negative or positive) and the strength (magnitude) of eQTL's gene regulation.
+
+### Difference model
+
+- `Psi.txt`: a matrix of shape `(num_SNPs,num_genes)` for *cis*-acting eQTLs. Each matrix value encodes the direction (negative or positive) and the strength (magnitude) of *cis*-acting eQTL's gene regulation.
+- `Gamma.txt`: each line contains inverse variance of allele-specific expression for each gene.
 
