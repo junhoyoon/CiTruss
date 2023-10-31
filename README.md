@@ -61,7 +61,7 @@ Gene expression data should be a text file that includes a space-separated matri
 
 ### Genotype
 
-Genotype data should be a text file that includes a space-separated matrix of phased genotype information in *(number of SNPs, number of samples)* shape. Both the sum and difference models take phased genotype data (examples in [/demo/X1.txt](./demo/X1.txt) and [/demo/X2.txt](./demo/X2.txt)).
+Genotype data should be a text file that includes a space-separated matrix of phased genotype information in *(number of SNPs, number of samples)* shape. Both the sum and difference models take phased genotype data in two files, one for each haplotype (examples in [/demo/X1.txt](./demo/X1.txt) and [/demo/X2.txt](./demo/X2.txt)).
 
 
 ### eQTL information
