@@ -3,8 +3,8 @@ This software implments CiTruss, a statistical framework for simultaneously lear
 - [sum model](#sum-model) that takes total gene expression and phased genotype data to learn a gene network and eQTLs together with target genes
 - [difference model](#difference-model) that takes allele-specific gene expression, phased genotype data, and eQTLs from the sum model to learn *cis*-acting eQTLs together with target genes.
 
-Below, we provide instructions on
-- [how to install CiTruss](#installation)
+Below, we provide instructions on how to
+- [install CiTruss](#installation)
 - [format gene expression and SNP data](#data-formatting)
 - [run CiTruss](#usage--demo)
 - [understand outputs from CiTruss](#understanding-the-citruss-outputs).
